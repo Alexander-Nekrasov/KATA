@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
-public class Calculator {
+public class CalculatorArabic {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         int numberFirst = getInt();
         int numberSecond = getInt();
         char operation = getOperation();
-        int result = calc(numberFirst,numberSecond,operation);
+        int result = calculation(numberFirst,numberSecond,operation);
 
         System.out.println("Результат операции: " + result);
     }
@@ -44,7 +44,7 @@ public class Calculator {
         return operation;
     }
 
-    public static int calc(int numberFirst, int numberSecond, char operation){
+    public static int calculation(int numberFirst, int numberSecond, char operation){
         int result = 0;
 
         switch (operation){
