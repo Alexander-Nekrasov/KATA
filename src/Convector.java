@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class NumberConvector {
+public class Convector {
 
 
     public static int romanToArabic(String input) {
