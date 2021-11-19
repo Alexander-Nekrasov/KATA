@@ -7,14 +7,31 @@ public class Main {
         String expression = scanner.nextLine();
 
         String[] line = expression.split(" ");
+
         StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder1 = new StringBuilder();
+
         for (int i=0; i < line.length; i++) {
-                if(!line[i].contains("+")&&!line[i].contains("-")&&!line[i].contains("*")&&!line[i].contains("/"))
+
+            if ( Convector.romanToArabic(line[0])>0 && Convector.romanToArabic(line[0])<=10
+                    && Convector.romanToArabic(line[2])>0 && Convector.romanToArabic (line[2])<=10){
+                stringBuilder1.append( line[i]);
+            } else if(Integer.parseInt(line[0])>0 && Integer.parseInt(line[0])<=10 // с парсингом проблема
+                    && Integer.parseInt(line[2])>0 && Integer.parseInt(line[2])<=10) {
+//                if (!line[i].contains("+") && !line[i].contains("-")
+//                        && !line[i].contains("*") && !line[i].contains("/"))
                     stringBuilder.append(line[i]);
+            } else
+            {throw new InputMismatchException("The number is not on the interval 1 - 10");}
         }
-        if (Integer.parseInt(stringBuilder.toString())<=1010) {
-            System.out.println(Calculator.RPNtoAnswer(Calculator.ExpressionToRPN(expression)));
-        } else throw new InputMismatchException("The number is not on the interval 1 - 10");
+
+            if(stringBuilder.length()>0){
+        System.out.println(Calculator.RPNtoAnswer(Calculator.ExpressionToRPN(stringBuilder.toString())));}
+             else if(stringBuilder1.length()>0) {
+                System.out.println(Convector.arabicToRoman(Calculator
+                       .RPNtoAnswer(Calculator.ExpressionToRPN(RomaToArabic.arabicExpression(expression)))));
+            }
+
 
             // Результат чисел
             // System.out.println(Calculator.RPNtoAnswer(Calculator.ExpressionToRPN(expression)));
