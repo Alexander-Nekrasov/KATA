@@ -13,34 +13,37 @@ public class Main {
 
         for (int i=0; i < line.length; i++) {
 
-            if ( Convector.romanToArabic(line[0])>0 && Convector.romanToArabic(line[0])<=10
-                    && Convector.romanToArabic(line[2])>0 && Convector.romanToArabic (line[2])<=10){
-                stringBuilder1.append( line[i]);
-            } else if(Integer.parseInt(line[0])>0 && Integer.parseInt(line[0])<=10 // с парсингом проблема
-                    && Integer.parseInt(line[2])>0 && Integer.parseInt(line[2])<=10) {
-//                if (!line[i].contains("+") && !line[i].contains("-")
-//                        && !line[i].contains("*") && !line[i].contains("/"))
-                    stringBuilder.append(line[i]);
-            } else
-            {throw new InputMismatchException("The number is not on the interval 1 - 10");}
-        }
+            try {
 
-            if(stringBuilder.length()>0){
+                if (Integer.parseInt(line[0]) > 0 && Integer.parseInt(line[0]) <= 10 // с парсингом проблема
+                        && Integer.parseInt(line[2]) > 0 && Integer.parseInt(line[2]) <= 10) {
+                    stringBuilder.append(line[i]);
+                } else {
+                   System.out.println("ERROR: did not fall into the interval I - X"); break;
+                }
+            }
+            catch (Exception e){}
+
+            try {
+                    if (Convector.romanToArabic(line[0]) > 0 && Convector.romanToArabic(line[0]) <= 10
+                            && Convector.romanToArabic(line[2]) > 0 && Convector.romanToArabic(line[2]) <= 10) {
+                        stringBuilder1.append(line[i]);
+                    } else {
+                        System.out.println("ERROR: did not fall into the interval I - X"); break;
+                    }
+                }
+            catch (Exception e){}
+
+                                            }
+
+            if(!stringBuilder.isEmpty()){
         System.out.println(Calculator.RPNtoAnswer(Calculator.ExpressionToRPN(stringBuilder.toString())));}
-             else if(stringBuilder1.length()>0) {
+             else if(!stringBuilder1.isEmpty()) {
                 System.out.println(Convector.arabicToRoman(Calculator
                        .RPNtoAnswer(Calculator.ExpressionToRPN(RomaToArabic.arabicExpression(expression)))));
             }
 
 
-            // Результат чисел
-            // System.out.println(Calculator.RPNtoAnswer(Calculator.ExpressionToRPN(expression)));
-
-
-
-        //Результат римский
-        //System.out.println(Convector.arabicToRoman(Calculator
-         //       .RPNtoAnswer(Calculator.ExpressionToRPN(RomaToArabic.arabicExpression(expression)))));
     }
 
 }

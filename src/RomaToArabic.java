@@ -1,7 +1,4 @@
 public class RomaToArabic {
-    public static void main(String[] args) {
-        System.out.println(arabicExpression("Ix * x"));
-    }
 
     public static String arabicExpression (String romanExpression){
         StringBuilder arabicExpression = new StringBuilder();
