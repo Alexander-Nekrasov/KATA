@@ -8,7 +8,7 @@ public class Main {
 
         String[] line = expression.split(" ");
 
-        if (line.length > 3 || line.length<3) throw new IndexOutOfBoundsException();
+        if (line.length > 3 || line.length < 3) throw new IndexOutOfBoundsException();
 
         StringBuilder stringBuilder = new StringBuilder();
         StringBuilder stringBuilder1 = new StringBuilder();
