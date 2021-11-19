@@ -20,7 +20,7 @@ public enum Numeral {
 
     public static List<Numeral> getReverseSortedValues() {
         return Arrays.stream(values()).sorted(Comparator.comparing((Numeral e) -> e.value)
-                                      .reversed())
-                                      .collect(Collectors.toList());
+                        .reversed())
+                .collect(Collectors.toList());
     }
 }

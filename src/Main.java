@@ -11,37 +11,39 @@ public class Main {
         StringBuilder stringBuilder = new StringBuilder();
         StringBuilder stringBuilder1 = new StringBuilder();
 
-        for (int i=0; i < line.length; i++) {
+        for (int i = 0; i < line.length; i++) {
 
             try {
 
-                if (Integer.parseInt(line[0]) > 0 && Integer.parseInt(line[0]) <= 10 // с парсингом проблема
+                if (Integer.parseInt(line[0]) > 0 && Integer.parseInt(line[0]) <= 10
                         && Integer.parseInt(line[2]) > 0 && Integer.parseInt(line[2]) <= 10) {
                     stringBuilder.append(line[i]);
                 } else {
-                   System.out.println("ERROR: did not fall into the interval I - X"); break;
+                    System.out.println("ERROR: did not fall into the interval I - X");
+                    break; // not processing, but for understanding
                 }
+            } catch (Exception e) {
             }
-            catch (Exception e){}
 
             try {
-                    if (Convector.romanToArabic(line[0]) > 0 && Convector.romanToArabic(line[0]) <= 10
-                            && Convector.romanToArabic(line[2]) > 0 && Convector.romanToArabic(line[2]) <= 10) {
-                        stringBuilder1.append(line[i]);
-                    } else {
-                        System.out.println("ERROR: did not fall into the interval I - X"); break;
-                    }
+                if (Convector.romanToArabic(line[0]) > 0 && Convector.romanToArabic(line[0]) <= 10
+                        && Convector.romanToArabic(line[2]) > 0 && Convector.romanToArabic(line[2]) <= 10) {
+                    stringBuilder1.append(line[i]);
+                } else {
+                    System.out.println("ERROR: did not fall into the interval I - X");
+                    break; // not processing, but for understanding
                 }
-            catch (Exception e){}
-
-                                            }
-
-            if(!stringBuilder.isEmpty()){
-        System.out.println(Calculator.RPNtoAnswer(Calculator.ExpressionToRPN(stringBuilder.toString())));}
-             else if(!stringBuilder1.isEmpty()) {
-                System.out.println(Convector.arabicToRoman(Calculator
-                       .RPNtoAnswer(Calculator.ExpressionToRPN(RomaToArabic.arabicExpression(expression)))));
+            } catch (Exception e) {
             }
+
+        }
+
+        if (!stringBuilder.isEmpty()) {
+            System.out.println(Calculator.RPNtoAnswer(Calculator.ExpressionToRPN(stringBuilder.toString())));
+        } else if (!stringBuilder1.isEmpty()) {
+            System.out.println(Convector.arabicToRoman(Calculator
+                    .RPNtoAnswer(Calculator.ExpressionToRPN(RomaToArabic.arabicExpression(expression)))));
+        }
 
 
     }
