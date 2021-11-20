@@ -8,7 +8,7 @@ public class Main {
 
         String[] line = expression.split(" ");
 
-        if (line.length > 3 || line.length < 3) throw new IndexOutOfBoundsException();
+        if (line.length > 3 || line.length < 3) throw new IndexOutOfBoundsException("the format of the mathematical operation does not satisfy");
 
         StringBuilder stringBuilder = new StringBuilder();
         StringBuilder stringBuilder1 = new StringBuilder();
@@ -16,13 +16,9 @@ public class Main {
         for (int i = 0; i < line.length; i++) {
 
             try {
-
                 if (Integer.parseInt(line[0]) > 0 && Integer.parseInt(line[0]) <= 10
                         && Integer.parseInt(line[2]) > 0 && Integer.parseInt(line[2]) <= 10) {
                     stringBuilder.append(line[i]);
-                } else {
-                    System.out.println("ERROR: did not fall into the interval I - X");
-                    break; // not processing, but for understanding
                 }
             } catch (Exception e) {
             }
@@ -31,23 +27,19 @@ public class Main {
                 if (Convector.romanToArabic(line[0]) > 0 && Convector.romanToArabic(line[0]) <= 10
                         && Convector.romanToArabic(line[2]) > 0 && Convector.romanToArabic(line[2]) <= 10) {
                     stringBuilder1.append(line[i]);
-                } else {
-                    System.out.println("ERROR: did not fall into the interval I - X");
-                    break; // not processing, but for understanding
                 }
             } catch (Exception e) {
             }
 
         }
-
-        if (!stringBuilder.isEmpty()) {
-            System.out.println(Calculator.RPNtoAnswer(Calculator.ExpressionToRPN(stringBuilder.toString())));
-        } else if (!stringBuilder1.isEmpty()) {
-            System.out.println(Convector.arabicToRoman(Calculator
-                    .RPNtoAnswer(Calculator.ExpressionToRPN(RomaToArabic.arabicExpression(expression)))));
-        }
-
-
+            if (!stringBuilder.isEmpty()) {
+                System.out.println(Calculator.RPNtoAnswer(Calculator.ExpressionToRPN(stringBuilder.toString())));
+            } else if (!stringBuilder1.isEmpty()) {
+                System.out.println(Convector.arabicToRoman(Calculator
+                        .RPNtoAnswer(Calculator.ExpressionToRPN(RomaToArabic.arabicExpression(expression)))));
+            } else if(stringBuilder.length()==stringBuilder1.length()){
+                throw new InputMismatchException("Incorrect input of values");
+            }
     }
 
 }
